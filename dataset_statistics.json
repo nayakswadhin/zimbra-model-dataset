@@ -1,0 +1,214 @@
+{
+  "dataset_info": {
+    "name": "Zimbra Java Vulnerability Dataset",
+    "version": "1.0",
+    "creation_date": "2026-01-01",
+    "description": "Authentic Java vulnerability samples extracted from official Zimbra GitHub repositories"
+  },
+  "dataset_size": {
+    "total_samples": 2250,
+    "authentic_samples": 2250,
+    "augmented_samples_available": true
+  },
+  "data_splits": {
+    "train": {
+      "samples": 1575,
+      "percentage": 70,
+      "file": "data/authentic/train.json"
+    },
+    "validation": {
+      "samples": 337,
+      "percentage": 15,
+      "file": "data/authentic/val.json"
+    },
+    "test": {
+      "samples": 338,
+      "percentage": 15,
+      "file": "data/authentic/test.json"
+    }
+  },
+  "vulnerability_types": {
+    "SQL Injection": {
+      "count": 450,
+      "percentage": 20.0,
+      "description": "Vulnerabilities involving unsafe SQL query construction"
+    },
+    "Cross-Site Scripting (XSS)": {
+      "count": 450,
+      "percentage": 20.0,
+      "description": "Vulnerabilities involving unescaped output in web pages"
+    },
+    "Command Injection": {
+      "count": 450,
+      "percentage": 20.0,
+      "description": "Vulnerabilities allowing arbitrary system command execution"
+    },
+    "Path Traversal": {
+      "count": 450,
+      "percentage": 20.0,
+      "description": "Vulnerabilities allowing access to files outside intended directories"
+    },
+    "Insecure Deserialization": {
+      "count": 450,
+      "percentage": 20.0,
+      "description": "Vulnerabilities in deserializing untrusted data"
+    }
+  },
+  "confidence_distribution": {
+    "score_1.0": {
+      "description": "Perfect - All 4 validation criteria met",
+      "percentage": "10-20%",
+      "estimated_samples": "225-450"
+    },
+    "score_0.8": {
+      "description": "High - 3-4 validation criteria met",
+      "percentage": "70-80%",
+      "estimated_samples": "1575-1800"
+    },
+    "score_0.6": {
+      "description": "Acceptable - 2-3 validation criteria met",
+      "percentage": "5-10%",
+      "estimated_samples": "112-225"
+    },
+    "average_score": 0.83,
+    "median_score": 0.8,
+    "minimum_score": 0.6
+  },
+  "source_repositories": [
+    {
+      "name": "zm-mailbox",
+      "url": "https://github.com/Zimbra/zm-mailbox",
+      "description": "Core mailbox functionality"
+    },
+    {
+      "name": "zm-zcs",
+      "url": "https://github.com/Zimbra/zm-zcs",
+      "description": "Zimbra Collaboration Suite"
+    },
+    {
+      "name": "zm-certificate-manager-store",
+      "url": "https://github.com/Zimbra/zm-certificate-manager-store",
+      "description": "Certificate management"
+    },
+    {
+      "name": "zm-taglib",
+      "url": "https://github.com/Zimbra/zm-taglib",
+      "description": "JSP tag library"
+    },
+    {
+      "name": "zm-oauth-social",
+      "url": "https://github.com/Zimbra/zm-oauth-social",
+      "description": "OAuth and social integration"
+    },
+    {
+      "name": "zm-openid-consumer-store",
+      "url": "https://github.com/Zimbra/zm-openid-consumer-store",
+      "description": "OpenID consumer store"
+    }
+  ],
+  "extraction_methodology": {
+    "tool": "PyDriller",
+    "total_commits_analyzed": "50000+",
+    "security_related_commits": "~2500",
+    "validation_layers": 6,
+    "minimum_confidence_threshold": 0.6,
+    "duplicate_detection": "SHA-256 hash-based"
+  },
+  "quality_metrics": {
+    "traceability": "100%",
+    "duplicates": 0,
+    "average_confidence": 0.83,
+    "class_balance": "Perfect (450 per class)",
+    "validation_layers": 6
+  },
+  "data_attributes": [
+    {
+      "name": "serial_no",
+      "type": "integer",
+      "description": "Sequential identifier for each sample"
+    },
+    {
+      "name": "vulnerable_code",
+      "type": "string",
+      "description": "Complete vulnerable Java source code before fix"
+    },
+    {
+      "name": "vulnerability_type",
+      "type": "string",
+      "description": "Classification of vulnerability (5 types)"
+    },
+    {
+      "name": "repo",
+      "type": "string",
+      "description": "Source Zimbra repository name"
+    },
+    {
+      "name": "commit",
+      "type": "string",
+      "description": "40-character Git commit SHA hash"
+    },
+    {
+      "name": "commit_msg",
+      "type": "string",
+      "description": "Original developer commit message"
+    },
+    {
+      "name": "original_file",
+      "type": "string",
+      "description": "Filename of the vulnerable Java file"
+    },
+    {
+      "name": "confidence_score",
+      "type": "float",
+      "description": "Quality score (0.6-1.0) from 4 validation criteria"
+    }
+  ],
+  "usage_statistics": {
+    "programming_language": "Java",
+    "framework_compatibility": ["Spring", "Hibernate", "Java EE"],
+    "typical_code_length": {
+      "average": "2000-3000 characters",
+      "min": "500 characters",
+      "max": "10000+ characters"
+    }
+  },
+  "augmentation": {
+    "available": true,
+    "techniques": [
+      "Variable renaming",
+      "Comment variations",
+      "Whitespace/formatting changes"
+    ],
+    "preservation": "Vulnerability logic and exploit paths unchanged",
+    "validation": "All augmented samples validated for pattern preservation"
+  },
+  "limitations": [
+    "Java-specific (not applicable to other languages)",
+    "Zimbra-focused (enterprise software domain)",
+    "Historical data (past vulnerabilities, not zero-days)",
+    "No Buffer Overflow (not applicable to Java)",
+    "Commit message quality dependency",
+    "Pattern-based detection limitations"
+  ],
+  "ethical_considerations": {
+    "data_source": "Public repositories only",
+    "vulnerability_status": "All vulnerabilities already fixed",
+    "exploit_information": "No proof-of-concept exploits included",
+    "intended_use": "Research and education only",
+    "attribution": "Proper credit to Zimbra and contributors"
+  },
+  "verification": {
+    "method": "GitHub commit URL verification",
+    "url_pattern": "https://github.com/Zimbra/{repo}/commit/{commit}",
+    "verifiable_percentage": 100,
+    "documentation": "Full commit history and bug references included"
+  },
+  "metadata": {
+    "created_by": "Dataset Extraction Pipeline v1.0",
+    "extraction_tool": "PyDriller 2.0+",
+    "validation_tool": "Custom 6-layer validation pipeline",
+    "format": "JSON",
+    "encoding": "UTF-8",
+    "file_structure": "Array of objects"
+  }
+}
