@@ -162,40 +162,6 @@ All vulnerabilities were extracted from these **6 official Zimbra GitHub reposit
 | **zm-oauth-social** | OAuth and social integration | https://github.com/Zimbra/zm-oauth-social |
 | **zm-openid-consumer-store** | OpenID consumer store | https://github.com/Zimbra/zm-openid-consumer-store |
 
----
-
-## ✅ Verification & Traceability
-
-Every sample in this dataset is **100% verifiable**. You can trace each vulnerability back to its original fix commit:
-
-### Verification Steps:
-
-1. **Pick any sample** from the dataset
-2. **Note the `repo` and `commit` fields**
-3. **Visit**: `https://github.com/Zimbra/{repo}/commit/{commit}`
-4. **Verify**:
-   - The vulnerable code exists in the "before" state
-   - The fix was applied in the commit
-   - The commit message matches
-   - The file name is correct
-
-### Example Verification:
-
-For sample #1 (SQL Injection):
-```
-Repository: zm-mailbox
-Commit: 613db7155197e7c87dd61deb3ba7970e9784717c
-Verification URL: 
-https://github.com/Zimbra/zm-mailbox/commit/613db7155197e7c87dd61deb3ba7970e9784717c
-
-✅ You'll see the exact vulnerable code in DbBlobConsistency.java
-✅ The fix applied for bug 41970
-✅ Bugzilla reference: http://bugzilla.zimbra.com/show_bug.cgi?id=41970
-```
-
-This level of traceability ensures **complete transparency** and **authenticity validation**.
-
----
 
 ## 📊 Quality Assurance
 
@@ -225,10 +191,6 @@ The dataset underwent a **6-layer validation pipeline** to ensure high quality:
 - Code hash + commit hash deduplication
 - Ensures no duplicate vulnerabilities
 
----
-
-
----
 
 ## 🔄 Data Splits
 
@@ -264,9 +226,6 @@ The `augmented/` folder contains **semantically-preserved** augmented versions:
 - Maintains perfect class balance
 - Preserves vulnerability patterns completely
 
----
-
----
 
 ## 📝 Version History
 
