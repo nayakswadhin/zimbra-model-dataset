@@ -227,68 +227,12 @@ The dataset underwent a **6-layer validation pipeline** to ensure high quality:
 
 ---
 
-## 📖 Usage Example
-
-### Loading the Dataset (Python)
-
-```python
-import json
-
-# Load authentic training data
-with open('data/authentic/train.json', 'r', encoding='utf-8') as f:
-    train_data = json.load(f)
-
-print(f"Loaded {len(train_data)} training samples")
-
-# Access first vulnerability sample
-sample = train_data[0]
-print(f"Vulnerability Type: {sample['vulnerability_type']}")
-print(f"Repository: {sample['repo']}")
-print(f"Confidence: {sample['confidence_score']}")
-print(f"Code:\n{sample['vulnerable_code'][:200]}...")  # First 200 chars
-
-# Filter by vulnerability type
-sql_injections = [s for s in train_data if s['vulnerability_type'] == 'SQL Injection']
-print(f"SQL Injection samples: {len(sql_injections)}")
-
-# Filter high-confidence samples
-high_confidence = [s for s in train_data if s['confidence_score'] >= 0.8]
-print(f"High-confidence samples: {len(high_confidence)}")
-```
-
-### Training a Model
-
-```python
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-from datasets import Dataset
-
-# Load data
-with open('data/authentic/train.json', 'r') as f:
-    train_data = json.load(f)
-
-# Create labels mapping
-label_map = {
-    "SQL Injection": 0,
-    "Cross-Site Scripting (XSS)": 1,
-    "Command Injection": 2,
-    "Path Traversal": 3,
-    "Insecure Deserialization": 4
-}
-
-# Prepare dataset
-dataset = Dataset.from_dict({
-    'code': [s['vulnerable_code'] for s in train_data],
-    'label': [label_map[s['vulnerability_type']] for s in train_data]
-})
-
-# Train your model...
-```
 
 ---
 
 ## 🔄 Data Splits
 
-The dataset is pre-split into training, validation, and test sets:
+The dataset is split into training, validation, and test sets:
 
 | Split | Samples | Percentage | Purpose |
 |-------|---------|------------|---------|
@@ -322,87 +266,12 @@ The `augmented/` folder contains **semantically-preserved** augmented versions:
 
 ---
 
-## 📜 Dataset Lineage
-
-```
-Zimbra GitHub Repositories (6 repos)
-        ↓
-PyDriller Git History Analysis
-        ↓
-6-Layer Validation Pipeline
-        ↓
-Authentic Dataset (2,250 samples)
-        ↓
-Stratified Split (70/15/15)
-        ↓
-Optional: Semantic-Preserving Augmentation
-        ↓
-Final Dataset
-```
-
----
-
-## ⚖️ License & Usage
-
-**Dataset License**: [Specify your license - e.g., MIT, Apache 2.0, CC BY 4.0]
-
-**Permitted Uses**:
-- ✅ Academic research
-- ✅ Security research
-- ✅ Model training and evaluation
-- ✅ Vulnerability detection systems
-
-**Restrictions**:
-- ❌ Do not use for malicious purposes
-- ❌ Do not exploit active vulnerabilities
-- ❌ Educational/research purposes only
-
-**Attribution**: All code originates from Zimbra open-source projects under their respective licenses.
-
----
-
-## 📞 Contact & Support
-
-**Dataset Maintainer**: [Your Name/Team]  
-**Institution**: [Your Institution]  
-**Email**: [Your Email]  
-**Date**: January 2026  
-**Version**: 1.0
-
----
-
-## 📚 Citation
-
-If you use this dataset in your research, please cite:
-
-```bibtex
-@dataset{zimbra_vulnerabilities_2026,
-  title={Zimbra Java Vulnerability Dataset: Authentic Security Vulnerabilities from Production Code},
-  author={[Your Name]},
-  year={2026},
-  publisher={[Your Institution]},
-  url={[Dataset URL]},
-  note={2,250 authentic Java vulnerabilities from 6 Zimbra repositories}
-}
-```
-
----
-
-## 🙏 Acknowledgments
-
-- **Zimbra** open-source community for maintaining high-quality codebases
-- **PyDriller** library for Git repository mining
-- All Zimbra developers who contributed security fixes
-
 ---
 
 ## 📝 Version History
 
 | Version | Date | Changes |
 |---------|------|---------|
-| 1.0 | January 2026 | Initial release with 2,250 authentic samples |
+| 1.0 | November 2026 | Initial release with 2,250 authentic samples |
 
 ---
-
-**For detailed extraction methodology, see [METHODOLOGY.md](METHODOLOGY.md)**  
-**For usage examples and guides, see [DATASET_GUIDE.md](DATASET_GUIDE.md)**
