@@ -65,8 +65,6 @@ The dataset focuses on **5 critical vulnerability classes** relevant to Java ent
   - Unfiltered object deserialization
 - **Real-world Impact**: Remote code execution, privilege escalation, denial of service
 
-> **Note**: Buffer Overflow was excluded as it's not applicable to Java's memory-safe environment.
-
 ---
 
 ## 📂 Dataset Structure
